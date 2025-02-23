@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "my-app.fullname" . }}-backend
+spec:
+  type: {{ .Values.backend.serviceType }}
+  ports:
+    - port: {{ .Values.backend.servicePort }}
+      targetPort: 8080
+  selector:
+    app: {{ include "my-app.name" . }}
+    component: backend

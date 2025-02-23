@@ -1,0 +1,21 @@
+frontend:
+  image: frontend-image:stable
+  replicas: 3
+  serviceType: LoadBalancer
+  servicePort: 80
+
+backend:
+  image: backend-image:stable
+  replicas: 3
+  serviceType: LoadBalancer
+  servicePort: 8080
+
+database:
+  image: database-image:stable
+  replicas: 1
+  serviceType: ClusterIP
+  servicePort: 5432
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: ""

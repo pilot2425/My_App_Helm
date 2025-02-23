@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "my-app.fullname" . }}-database
+spec:
+  replicas: {{ .Values.database.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "my-app.name" . }}
+      component: database
+  template:
+    metadata:
+      labels:
+        app: {{ include "my-app.name" . }}
+        component: database
+    spec:
+      containers:
+      - name: database
+        image: {{ .Values.database.image }}
+        ports:
+        - containerPort: 5432

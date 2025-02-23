@@ -1,0 +1,29 @@
+frontend:
+  image: frontend-image:latest
+  replicas: 2
+  serviceType: ClusterIP
+  servicePort: 80
+
+backend:
+  image: backend-image:latest
+  replicas: 2
+  serviceType: ClusterIP
+  servicePort: 8080
+
+database:
+  image: database-image:latest
+  replicas: 1
+  serviceType: ClusterIP
+  servicePort: 5432
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: ""
+service:
+  port: 80
+serviceAccount:
+  create: true
+ingress:
+  enabled: true
+autoscaling:
+  enabled: true
